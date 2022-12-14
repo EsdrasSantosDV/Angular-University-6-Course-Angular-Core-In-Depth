@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Output} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from "./model/course";
 
@@ -11,10 +11,13 @@ export class AppComponent {
 
   course:Course;
 
+
   constructor() {
     this.course=COURSES[0];
 
   }
 
-
+  courseSelected($event: Course) {
+    console.log($event);
+  }
 }
