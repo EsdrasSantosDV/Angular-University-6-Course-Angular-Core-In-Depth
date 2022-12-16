@@ -1,19 +1,21 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Course} from "../model/course";
-import {COURSES} from "../../db-data";
+import {Course} from '../model/course';
+import {COURSES} from '../../db-data';
 
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit{
+export class CourseCardComponent implements OnInit {
 
   @Input()
- course:Course;
+ course: Course;
 
+  @Input()
+  cardIndex: number;
   @Output()
-  courseSelected= new EventEmitter<Course>();
+  courseSelected = new EventEmitter<Course>();
 
   constructor() {
 
@@ -24,8 +26,7 @@ export class CourseCardComponent implements OnInit{
   }
 
 
-  oncourseViewed()
-  {
+  oncourseViewed() {
     this.courseSelected.emit(this.course);
   }
 

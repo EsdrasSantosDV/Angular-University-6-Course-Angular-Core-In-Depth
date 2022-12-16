@@ -6,13 +6,13 @@
 </div>
 
 <div class="courses">
+    <div *ngFor="let course of course;index as i;first as isFirst;last as isLast">
+      <course-card [class.is-first]="isFirst" [class.is-last]="isLast" [cardIndex]="i+1" [course]="course" (courseSelected)="courseSelected($event)" ></course-card>
+    </div>
 
-    <course-card [course]="course" (courseSelected)="courseSelected($event)" >
-    </course-card>
+    <div>
 
-
-
-
+    </div>
 </div>
 
 
