@@ -1,15 +1,19 @@
-<div class="course-card" *ngIf="course" [ngClass]="cardClasses(course)">
+
+<!--NG CLASS COLOCA AS CLASSES DE ACORDO COM AS CONDIÇOES IMPOSTAS-->
+<!--NG STYLE COLOCA STYLES DE ACORDO COM AS CONDIÇOES IMPOSTRAS-->
+<!--PODE COLOCAR QUALQUER EXPRESSÃO-->
+<div class="course-card" *ngIf="course" [ngClass]="cardClasses(course)" [ngStyle]="cardStyles()">
 
 
-  <div class="course-title">
+  <div class="course-title" >
     {{cardIndex  +' '+ course.description}}
   </div>
 
 <!-- PODE PASSAR QUALQUER EXPRESSAÃO DO JAVASCRIPT-->
 <!--  NG IF TRANSOFRMA EM TRUE OU FALSE E DEPENDNEDO DO VALOR IRA RENDERIZAR OU NÃO-->
 <!--  TRUE RENDERIZA E FALSE NÃO -->
-  <img width="300" alt="Angular Logo" *ngIf="isImageVisible;else noImage"
-       [src]="course.iconUrl">
+<!--  <img width="300" alt="Angular Logo" *ngIf="isImageVisible;else noImage"-->
+<!--       [src]="course.iconUrl">-->
 
   <ng-template #noImage>
      <p>No image is available</p>

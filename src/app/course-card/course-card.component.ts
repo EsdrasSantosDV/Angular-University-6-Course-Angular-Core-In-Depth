@@ -39,7 +39,13 @@ export class CourseCardComponent implements OnInit {
     if (this.course.category === 'BEGINNER') {
       return 'beginner';
     }
-    //PODE ENVIAR ASSIM MANDANDO UMA ARRYA
+    // PODE ENVIAR ASSIM MANDANDO UMA ARRYA
     // return {'beginner': this.course.category === 'BEGINNER'};
+  }
+
+  cardStyles() {
+    return {
+      'background-image': 'url(' + this.course.iconUrl + ')'
+    };
   }
 }
