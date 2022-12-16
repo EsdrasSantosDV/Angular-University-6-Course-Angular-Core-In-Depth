@@ -1,4 +1,4 @@
-<div class="course-card">
+<div class="course-card" *ngIf="course">
 
   <h1></h1>
 
@@ -6,14 +6,21 @@
     {{cardIndex  +' '+ course.description}}
   </div>
 
-  <img width="300" alt="Angular Logo"
+<!-- PODE PASSAR QUALQUER EXPRESSAÃO DO JAVASCRIPT-->
+<!--  NG IF TRANSOFRMA EM TRUE OU FALSE E DEPENDNEDO DO VALOR IRA RENDERIZAR OU NÃO-->
+<!--  TRUE RENDERIZA E FALSE NÃO -->
+  <img width="300" alt="Angular Logo" *ngIf="isImageVisible;else noImage"
        [src]="course.iconUrl">
+
+  <ng-template #noImage>
+     <p>No image is available</p>
+  </ng-template>
 
   <div class="course-description">
       {{course.longDescription}}
   </div>
 
-  <button (click)="oncourseViewed()">
+  <button (click)="oncourseViewed()" >
     View Course
   </button>
 
