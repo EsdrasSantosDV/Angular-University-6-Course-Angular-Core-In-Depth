@@ -1,42 +1,23 @@
 <div class="top-menu">
 
-    <img class="logo"
-         src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+  <img class="logo"
+       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
 
-<div class="demo">
-  <div>{{startDate |date:'MM/dd/yyyy'}}</div>
-  <div> {{title  | titlecase }}</div>
-  <div>{{price | currency:'BRL'}}</div>
-  <div>{{rate | percent }}</div>
-</div>
+<div #container class="courses">
 
-<!--DEBUGGIN-->
-<div *ngFor="let pair of course[1] | keyvalue">
-  {{pair.key+': '+pair.value}}
-</div>
+  <!--  TEM ATE O SLICE PIPE PRA ITERAÇÃO |slice:0:2-->
+  <!--    <div *ngFor="let course of course ;index as i;first as isFirst;last as isLast">-->
+  <!--      <course-card [class.is-first]="isFirst" [class.is-last]="isLast" [cardIndex]="i+1" [course]="course" (courseSelected)="courseSelected($event)" ></course-card>-->
+  <!--    </div>-->
 
-<div class="courses">
+  <course-card #cardRef1 (courseSelected)="courseSelected($event)" [course]="course[0]">
+  </course-card>
 
-<!--  TEM ATE O SLICE PIPE PRA ITERAÇÃO |slice:0:2-->
-    <div *ngFor="let course of course ;index as i;first as isFirst;last as isLast">
-      <course-card [class.is-first]="isFirst" [class.is-last]="isLast" [cardIndex]="i+1" [course]="course" (courseSelected)="courseSelected($event)" ></course-card>
-    </div>
-
-<!--  <course-card (courseSelected)="courseSelected($event)" [course]="course[0]">-->
-<!--  </course-card>-->
-
-<!--  <course-card (courseSelected)="courseSelected($event)" [course]="course[1]">-->
-<!--  </course-card>-->
-<!--  PRA DEBUGIGNG-->
-  <div>
-    {{course | json}}
-  </div>
-
-
-
+  <course-card #cardRef2 (courseSelected)="courseSelected($event)" [course]="course[1]">
+  </course-card>
 
 
 </div>

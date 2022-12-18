@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
@@ -17,14 +17,23 @@ export class AppComponent {
 
   rate = 0.34;
 
-  // E UM MECANISMO DE QUERY TEMPLATES DO ANGULAR
-  // NOS CONSEGUIMOS QUALQUER REFERENCIA DE QUALQUER ELEMENTO DO NOSSO TEMPLATE
-  // SO QUE ELE RETORNA A PRIMEIRA REFERENCIA
-  // NO TESTE
-  // SADSA
 
-  @ViewChild(CourseCardComponent)
+  @ViewChild('cardRef1')
   card: CourseCardComponent;
+
+
+  // PODEMOS PASSAR AS OPOCES EM FORMATO DE OBNJETO
+  // PODEMOS COLOCAR O TIPO DE LEITURA DE REFERENCIA DA NOSSA QUERY DE TEMPLATES
+  // POR DEFAULT VEM A DA INSTANCI A DO COMPONENTE
+  // AQUI COLOCAMOS PRA LER A REFERENCIA DO ELEMENTO DE REFERENCIA
+  @ViewChild('cardRef2', {read: ElementRef})
+  card2: CourseCardComponent;
+
+  //PODEMOS PEGAR  A REFREENCIA NATIVA E TAMBEM DO COMPONENTE SE QUISERMOS
+  // ELEMENTREF E QUALQUER ELEMENTO DO DOOM NATIVO PODEMOS PEGAR O ELEMENTO DE REFERENCIA
+  // DE QUALQUER ELEMENTO, ATE MESMO DOS COMPONENTES. COMO FIZ ALI EMCIMA
+  @ViewChild('container')
+  containerDiv: ElementRef;
 
   title = COURSES[0].description;
 
@@ -36,8 +45,6 @@ export class AppComponent {
   }
 
   courseSelected($event: Course) {
-
-    console.log(this.card);
-    console.log($event);
+    console.log(this.card2);
   }
 }
