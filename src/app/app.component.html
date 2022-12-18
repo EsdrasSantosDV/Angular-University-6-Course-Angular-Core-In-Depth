@@ -5,19 +5,16 @@
 
 </div>
 
+<button (click)="onCoursesEdited()">Edit Courses</button>
 
-<div #container class="courses">
+<div class="courses">
 
-  <!--  TEM ATE O SLICE PIPE PRA ITERAÇÃO |slice:0:2-->
-  <!--    <div *ngFor="let course of course ;index as i;first as isFirst;last as isLast">-->
-  <!--      <course-card [class.is-first]="isFirst" [class.is-last]="isLast" [cardIndex]="i+1" [course]="course" (courseSelected)="courseSelected($event)" ></course-card>-->
-  <!--    </div>-->
 
-  <course-card #cardRef1 (courseSelected)="courseSelected($event)" [course]="course[0]">
-  </course-card>
-
-  <course-card #cardRef2 (courseSelected)="courseSelected($event)" [course]="course[1]">
-  </course-card>
+  <course-card (courseSelected)="courseSelected($event)"
+               *ngFor="let course of course ;index as i;first as isFirst;last as isLast" [cardIndex]="i+1"
+               [class.is-first]="isFirst"
+               [class.is-last]="isLast"
+               [course]="course"></course-card>
 
 
 </div>
