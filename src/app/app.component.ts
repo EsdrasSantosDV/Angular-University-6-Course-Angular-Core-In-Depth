@@ -1,6 +1,7 @@
-import {Component, Output} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
+import {CourseCardComponent} from './course-card/course-card.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,14 @@ export class AppComponent {
 
   rate = 0.34;
 
+  // E UM MECANISMO DE QUERY TEMPLATES DO ANGULAR
+  // NOS CONSEGUIMOS QUALQUER REFERENCIA DE QUALQUER ELEMENTO DO NOSSO TEMPLATE
+  // SO QUE ELE RETORNA A PRIMEIRA REFERENCIA
+  // NO TESTE
+  // SADSA
+
+  @ViewChild(CourseCardComponent)
+  card: CourseCardComponent;
 
   title = COURSES[0].description;
 
@@ -27,6 +36,8 @@ export class AppComponent {
   }
 
   courseSelected($event: Course) {
+
+    console.log(this.card);
     console.log($event);
   }
 }

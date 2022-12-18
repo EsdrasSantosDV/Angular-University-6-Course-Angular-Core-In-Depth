@@ -25,6 +25,11 @@
       <course-card [class.is-first]="isFirst" [class.is-last]="isLast" [cardIndex]="i+1" [course]="course" (courseSelected)="courseSelected($event)" ></course-card>
     </div>
 
+<!--  <course-card (courseSelected)="courseSelected($event)" [course]="course[0]">-->
+<!--  </course-card>-->
+
+<!--  <course-card (courseSelected)="courseSelected($event)" [course]="course[1]">-->
+<!--  </course-card>-->
 <!--  PRA DEBUGIGNG-->
   <div>
     {{course | json}}
