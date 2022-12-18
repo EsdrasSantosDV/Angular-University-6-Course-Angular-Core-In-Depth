@@ -1,23 +1,22 @@
-
 <!--NG CLASS COLOCA AS CLASSES DE ACORDO COM AS CONDIÇOES IMPOSTAS-->
 <!--NG STYLE COLOCA STYLES DE ACORDO COM AS CONDIÇOES IMPOSTRAS-->
 <!--PODE COLOCAR QUALQUER EXPRESSÃO-->
 
 <!--NG COINTAINER SERVE PRA AGRUPAR, SEM CRIAR UMA DIV REDUNDANTE NA PAGINA-->
 <!--SEMPRE AGRUPE PELA RAIZ-->
-<ng-container  *ngIf="course">
-  <div class="course-card"  [ngClass]="cardClasses(course)" [ngStyle]="cardStyles()">
+<ng-container *ngIf="course">
+  <div [ngClass]="cardClasses(course)" [ngStyle]="cardStyles()" class="course-card">
 
 
-    <div class="course-title" >
-      {{cardIndex  +' '+ course.description}}
+    <div class="course-title">
+      {{cardIndex + ' ' + course.description}}
     </div>
 
     <!-- PODE PASSAR QUALQUER EXPRESSAÃO DO JAVASCRIPT-->
     <!--  NG IF TRANSOFRMA EM TRUE OU FALSE E DEPENDNEDO DO VALOR IRA RENDERIZAR OU NÃO-->
     <!--  TRUE RENDERIZA E FALSE NÃO -->
-    <!--  <img width="300" alt="Angular Logo" *ngIf="isImageVisible;else noImage"-->
-    <!--       [src]="course.iconUrl">-->
+    <img #cardImage *ngIf="isImageVisible;else noImage" [src]="course.iconUrl" alt="Angular Logo"
+         width="300">
 
     <ng-template #noImage>
       <p>No image is available</p>
@@ -27,19 +26,19 @@
       {{course.longDescription}}
     </div>
 
-  <ng-container [ngSwitch]="course.category">
-    <div class="course-category"  >
-      <ng-container *ngSwitchCase="'BEGINNER'">
-        <div class="category" >Beginner</div>
-      </ng-container>
-      <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
-      <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
-      <div class="category" *ngSwitchDefault>All Levels</div>
-    </div>
-  </ng-container>
+    <ng-container [ngSwitch]="course.category">
+      <div class="course-category">
+        <ng-container *ngSwitchCase="'BEGINNER'">
+          <div class="category">Beginner</div>
+        </ng-container>
+        <div *ngSwitchCase="'INTERMEDIATE'" class="category">Intermediate</div>
+        <div *ngSwitchCase="'ADVANCED'" class="category">Advanced</div>
+        <div *ngSwitchDefault class="category">All Levels</div>
+      </div>
+    </ng-container>
 
 
-    <button (click)="oncourseViewed()" >
+    <button (click)="oncourseViewed()">
       View Course
     </button>
 
