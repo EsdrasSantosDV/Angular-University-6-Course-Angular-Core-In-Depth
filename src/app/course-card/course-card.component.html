@@ -5,22 +5,26 @@
 <!--NG COINTAINER SERVE PRA AGRUPAR, SEM CRIAR UMA DIV REDUNDANTE NA PAGINA-->
 <!--SEMPRE AGRUPE PELA RAIZ-->
 <ng-container *ngIf="course">
-  <div [ngClass]="cardClasses(course)" [ngStyle]="cardStyles()" class="course-card">
+  <div [ngClass]="cardClasses(course)" class="course-card">
 
 
     <div class="course-title">
       {{cardIndex + ' ' + course.description}}
     </div>
 
-    <!-- PODE PASSAR QUALQUER EXPRESSAÃO DO JAVASCRIPT-->
-    <!--  NG IF TRANSOFRMA EM TRUE OU FALSE E DEPENDNEDO DO VALOR IRA RENDERIZAR OU NÃO-->
-    <!--  TRUE RENDERIZA E FALSE NÃO -->
-    <img #cardImage *ngIf="isImageVisible;else noImage" [src]="course.iconUrl" alt="Angular Logo"
-         width="300">
 
-    <ng-template #noImage>
-      <p>No image is available</p>
-    </ng-template>
+    <!--    ESTAMOS PROJETANDO AQUI O CONTEUDO QUE COLOCAMOS DENTRO DO NOSSO COMPOONENTE LA ONDE FOI CHAMADO-->
+    <!--    Podemos SELECIONAR O QUE QUEREMOS PROJETAR-->
+    <!--PODEMOS SEELCIOANR QUALQUER COISA, DESDE UM DETERMINADO NATIVO DO HTML, ATE MESMO UMA CLASSE CSSS-->
+    <ng-content select=".projetar">
+
+    </ng-content>
+
+    <!--    PODEMOS COLOCAR VARIOS-->
+    <ng-content select=".projetar-description">
+
+    </ng-content>
+
 
     <div class="course-description">
       {{course.longDescription}}

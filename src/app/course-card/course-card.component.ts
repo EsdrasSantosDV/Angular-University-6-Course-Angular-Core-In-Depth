@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '../model/course';
-import {COURSES} from '../../db-data';
 
 @Component({
   selector: 'course-card',
@@ -10,7 +9,7 @@ import {COURSES} from '../../db-data';
 export class CourseCardComponent implements OnInit {
 
   @Input()
- course: Course;
+  course: Course;
 
   @Input()
   cardIndex: number;
@@ -20,8 +19,8 @@ export class CourseCardComponent implements OnInit {
   constructor() {
 
 
-
   }
+
   ngOnInit(): void {
   }
 
@@ -43,9 +42,4 @@ export class CourseCardComponent implements OnInit {
     // return {'beginner': this.course.category === 'BEGINNER'};
   }
 
-  cardStyles() {
-    return {
-      'background-image': 'url(' + this.course.iconUrl + ')'
-    };
-  }
 }
