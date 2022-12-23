@@ -10,7 +10,7 @@
 <div class="courses">
 
 
-  <course-card (toggleHighlight)="OnToggle($event)" [cardIndex]="2" [course]="course[2]" highlighted>
+  <course-card #highlighter="hl" (toggleHighlight)="OnToggle($event)" [cardIndex]="2" [course]="course[2]" highlighted>
     <course-image [src]="course[2].iconUrl"></course-image>
   </course-card>
 
@@ -21,7 +21,7 @@
     [class.is-first]="isFirst"
     [class.is-last]="isLast"
     [course]="course"
-    highlighted="true"
+
 
   >
     <course-image [src]="course.iconUrl"></course-image>

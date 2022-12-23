@@ -2,7 +2,8 @@ import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from 
 
 @Directive({
   // CIRAMOS UMA INSTANCIA DESSA DIRETIVA ONDE COLOCAMOS LA NO DOOM
-  selector: '[highlighted]'
+  selector: '[highlighted]',
+  exportAs: 'hl'
 })
 export class HighlightedDirective {
 
@@ -46,5 +47,10 @@ export class HighlightedDirective {
     this.toggleHighlight.emit(this.isHighlighted);
   }
 
+
+  toggle() {
+    this.isHighlighted = !this.isHighlighted;
+    this.toggleHighlight.emit(this.isHighlighted);
+  }
 
 }

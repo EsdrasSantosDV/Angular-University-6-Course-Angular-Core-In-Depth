@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {COURSES} from '../db-data';
 import {Course} from './model/course';
 import {CourseCardComponent} from './course-card/course-card.component';
+import {HighlightedDirective} from './directives/highlighted.directive';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,11 @@ export class AppComponent implements AfterViewInit {
   title = COURSES[0].description;
 
 
+  //PODEMOS SELECIONAR SOMENTE A DIRECTIVA QUE QUEREMOS
+  @ViewChild(CourseCardComponent, {read: HighlightedDirective})
+  highlighted: HighlightedDirective;
+
+
   @ViewChildren(CourseCardComponent, {read: ElementRef})
   cards: QueryList<ElementRef>;
 
@@ -35,6 +41,7 @@ export class AppComponent implements AfterViewInit {
 
   // O UNICO MOMENTO QUE TEMOS POPULADO A NOSSAS REFERENCIAS E A AFTER VIEW INIT UM DOS CICLOS DE VIDA DO COMPONENTE
   ngAfterViewInit() {
+    console.log(this.highlighted);
 
   }
 
