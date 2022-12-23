@@ -1,12 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Course} from '../model/course';
+import {CourseImageComponent} from '../course-image/course-image.component';
 
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit {
+export class CourseCardComponent implements OnInit, AfterViewInit {
 
   @Input()
   course: Course;
@@ -16,6 +17,14 @@ export class CourseCardComponent implements OnInit {
   @Output()
   courseSelected = new EventEmitter<Course>();
 
+
+  // Pra pegar das projeçoes enviadas
+  // ESSE CONTENT CHILD O ESCOPO DELE E RESTRITO SO AS PARTES DE PROJEÇÃO DO TEMPLATE
+  // DOS NG CONTENT
+
+  @ContentChild(CourseImageComponent, {read: ElementRef})
+  courseImage: ElementRef;
+
   constructor() {
 
 
@@ -24,6 +33,9 @@ export class CourseCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit() {
+    console.log(this.courseImage);
+  }
 
   oncourseViewed() {
     this.courseSelected.emit(this.course);

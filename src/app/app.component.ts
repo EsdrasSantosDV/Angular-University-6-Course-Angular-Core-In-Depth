@@ -34,9 +34,8 @@ export class AppComponent implements AfterViewInit {
   }
 
   // O UNICO MOMENTO QUE TEMOS POPULADO A NOSSAS REFERENCIAS E A AFTER VIEW INIT UM DOS CICLOS DE VIDA DO COMPONENTE
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
 
-    console.log(this.cards);
   }
 
   onCoursesEdited() {
