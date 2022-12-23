@@ -8,7 +8,21 @@
 <button (click)="onCoursesEdited()">Edit Courses</button>
 
 <div class="courses">
+  <!--    E UM ELMENTO QUE NÃO E RENDERIZADO POR DEFAULT, QUER DIZER QUE ELE SO VAI SER RENDERIZADO, SE FOR CHAMADO INDIRETAMENTE OU DIRETAMENTE-->
+  <ng-template #blankImage let-courseName="description">
+    <p class="warn">
+      {{courseName}} has no image yet
+    </p>
+    <img src="/assets/empty-image.png">
+  </ng-template>
 
+  <div *ngTemplateOutlet="blankImage;context:{description:course[0].description}">
+
+  </div>
+
+  <div *ngTemplateOutlet="blankImage;context:{description:course[1].description}">
+
+  </div>
 
   <course-card (courseSelected)="courseSelected($event)"
                *ngFor="let course of course ;index as i;first as isFirst;last as isLast" [cardIndex]="i+1"
