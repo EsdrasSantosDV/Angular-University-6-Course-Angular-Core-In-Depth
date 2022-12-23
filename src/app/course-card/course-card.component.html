@@ -1,9 +1,3 @@
-<!--NG CLASS COLOCA AS CLASSES DE ACORDO COM AS CONDIÇOES IMPOSTAS-->
-<!--NG STYLE COLOCA STYLES DE ACORDO COM AS CONDIÇOES IMPOSTRAS-->
-<!--PODE COLOCAR QUALQUER EXPRESSÃO-->
-
-<!--NG COINTAINER SERVE PRA AGRUPAR, SEM CRIAR UMA DIV REDUNDANTE NA PAGINA-->
-<!--SEMPRE AGRUPE PELA RAIZ-->
 <ng-container *ngIf="course">
   <div [ngClass]="cardClasses(course)" class="course-card">
 
@@ -12,37 +6,7 @@
       {{cardIndex + ' ' + course.description}}
     </div>
 
-
-    <!--    ESTAMOS PROJETANDO AQUI O CONTEUDO QUE COLOCAMOS DENTRO DO NOSSO COMPOONENTE LA ONDE FOI CHAMADO-->
-    <!--    Podemos SELECIONAR O QUE QUEREMOS PROJETAR-->
-    <!--PODEMOS SEELCIOANR QUALQUER COISA, DESDE UM DETERMINADO NATIVO DO HTML, ATE MESMO UMA CLASSE CSSS-->
-    <ng-content *ngIf="course.iconUrl;else noImage" select="course-image">
-
-    </ng-content>
-
-    <ng-template #noImage>
-      <!--      AQUI ESTAMOS CHAMANDO NOSSO NG TEMPLATE LA NO APP COMPONENT MANDANDO ATE O CONTEXT PRA ELE RENDERIZAR LA-->
-      <!--      AQUI PODEMOS VER QUE ESTAMOS RENDERIZANDO ATE FORA DO ESCOPO DESSE COMPONENTE AQUI-->
-      <!--      COMO O NG TEMPLATE NÃO E RENDERIZADO POR DEFAULT E SIM POR UM ACIONAMENTO POR ASSIM DIZER-->
-      <ng-container *ngTemplateOutlet="noImageTpl;context:{description:course.description}">
-
-      </ng-container>
-    </ng-template>
-
-
-    <!--    E UM ELMENTO QUE NÃO E RENDERIZADO POR DEFAULT, QUER DIZER QUE ELE SO VAI SER RENDERIZADO, SE FOR CHAMADO INDIRETAMENTE OU DIRETAMENTE-->
-    <ng-template #blankImage>
-      <p class="warn">
-        {{course.description}} has no image yet
-      </p>
-      <img src="/assets/empty-image.png">
-    </ng-template>
-
-    <!--    PODEMOS COLOCAR VARIOS-->
-    <ng-content select=".projetar-description">
-
-    </ng-content>
-
+    <ng-content></ng-content>
 
     <div class="course-description">
       {{course.longDescription}}
@@ -58,7 +22,6 @@
         <div *ngSwitchDefault class="category">All Levels</div>
       </div>
     </ng-container>
-
 
     <button (click)="oncourseViewed()">
       View Course
