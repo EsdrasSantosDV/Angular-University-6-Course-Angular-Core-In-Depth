@@ -7,28 +7,38 @@
 
 <button (click)="onCoursesEdited()">Edit Courses</button>
 
-<div class="courses">
+
+<div class="salmon-theme">
 
 
-  <course-card #highlighter="hl" (toggleHighlight)="OnToggle($event)" [cardIndex]="2" [course]="course[2]" highlighted>
-    <course-image [src]="course[2].iconUrl"></course-image>
-  </course-card>
+  <ng-template [ngIf]="course[0]" let-course>
 
-  <course-card
-    (courseSelected)="courseSelected($event)"
-    *ngFor="let course of course ;index as i;first as isFirst;last as isLast"
-    [cardIndex]="i+1"
-    [class.is-first]="isFirst"
-    [class.is-last]="isLast"
-    [course]="course"
+    <div class="courses">
+
+      <course-card #highlighter="hl" (courseSelected)="courseSelected($event)"
+                   (toggleHighlight)="OnToggle($event)"
+                   [cardIndex]="1"
+                   [course]="course"
+                   highlighted>
 
 
-  >
-    <course-image [src]="course.iconUrl"></course-image>
+        <course-image *ngxUnless="!course.iconUrl"
+                      [src]="course.iconUrl">
 
-  </course-card>
+        </course-image>
+
+
+        <div (dblclick)="highlighter.toggle()"
+             class="course-description">
+          {{ course.longDescription }}
+        </div>
+
+      </course-card>
+
+    </div>
+
+  </ng-template>
 
 
 </div>
-
 

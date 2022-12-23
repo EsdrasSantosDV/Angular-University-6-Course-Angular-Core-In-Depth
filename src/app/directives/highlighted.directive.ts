@@ -1,5 +1,6 @@
 import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
 
+// DIRETIVA DE ATRIBUTO
 @Directive({
   // CIRAMOS UMA INSTANCIA DESSA DIRETIVA ONDE COLOCAMOS LA NO DOOM
   selector: '[highlighted]',

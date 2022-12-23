@@ -22,7 +22,7 @@ export class AppComponent implements AfterViewInit {
   title = COURSES[0].description;
 
 
-  //PODEMOS SELECIONAR SOMENTE A DIRECTIVA QUE QUEREMOS
+  // PODEMOS SELECIONAR SOMENTE A DIRECTIVA QUE QUEREMOS
   @ViewChild(CourseCardComponent, {read: HighlightedDirective})
   highlighted: HighlightedDirective;
 
