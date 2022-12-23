@@ -48,4 +48,8 @@ export class AppComponent implements AfterViewInit {
       lessonsCount: 10
     });
   }
+
+  OnToggle(isHighligted: boolean) {
+    console.log(isHighligted);
+  }
 }
