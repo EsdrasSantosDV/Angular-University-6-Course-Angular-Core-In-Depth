@@ -16,19 +16,16 @@
     <img src="/assets/empty-image.png">
   </ng-template>
 
-  <div *ngTemplateOutlet="blankImage;context:{description:course[0].description}">
 
-  </div>
-
-  <div *ngTemplateOutlet="blankImage;context:{description:course[1].description}">
-
-  </div>
-
+  <!--TEM COMO PASSAR ANGULAR TEMMPLATES COMO INPUTS-->
   <course-card (courseSelected)="courseSelected($event)"
-               *ngFor="let course of course ;index as i;first as isFirst;last as isLast" [cardIndex]="i+1"
+               *ngFor="let course of course ;index as i;first as isFirst;last as isLast"
+               [cardIndex]="i+1"
                [class.is-first]="isFirst"
                [class.is-last]="isLast"
-               [course]="course">
+               [course]="course"
+               [noImageTpl]="blankImage"
+  >
 
     <course-image [src]="course.iconUrl"></course-image>
     <course-image [src]="course.iconUrl"></course-image>

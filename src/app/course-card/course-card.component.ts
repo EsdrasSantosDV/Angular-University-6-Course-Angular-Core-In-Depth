@@ -8,7 +8,8 @@ import {
   Input,
   OnInit,
   Output,
-  QueryList
+  QueryList,
+  TemplateRef
 } from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
@@ -27,6 +28,9 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
   cardIndex: number;
   @Output()
   courseSelected = new EventEmitter<Course>();
+
+  @Input()
+  noImageTpl: TemplateRef<any>;
 
 
   // Pra pegar das projeçoes enviadas

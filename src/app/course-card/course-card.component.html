@@ -16,9 +16,19 @@
     <!--    ESTAMOS PROJETANDO AQUI O CONTEUDO QUE COLOCAMOS DENTRO DO NOSSO COMPOONENTE LA ONDE FOI CHAMADO-->
     <!--    Podemos SELECIONAR O QUE QUEREMOS PROJETAR-->
     <!--PODEMOS SEELCIOANR QUALQUER COISA, DESDE UM DETERMINADO NATIVO DO HTML, ATE MESMO UMA CLASSE CSSS-->
-    <ng-content *ngIf="course.iconUrl;else blankImage" select="course-image">
+    <ng-content *ngIf="course.iconUrl;else noImage" select="course-image">
 
     </ng-content>
+
+    <ng-template #noImage>
+      <!--      AQUI ESTAMOS CHAMANDO NOSSO NG TEMPLATE LA NO APP COMPONENT MANDANDO ATE O CONTEXT PRA ELE RENDERIZAR LA-->
+      <!--      AQUI PODEMOS VER QUE ESTAMOS RENDERIZANDO ATE FORA DO ESCOPO DESSE COMPONENTE AQUI-->
+      <!--      COMO O NG TEMPLATE NÃO E RENDERIZADO POR DEFAULT E SIM POR UM ACIONAMENTO POR ASSIM DIZER-->
+      <ng-container *ngTemplateOutlet="noImageTpl;context:{description:course.description}">
+
+      </ng-container>
+    </ng-template>
+
 
     <!--    E UM ELMENTO QUE NÃO E RENDERIZADO POR DEFAULT, QUER DIZER QUE ELE SO VAI SER RENDERIZADO, SE FOR CHAMADO INDIRETAMENTE OU DIRETAMENTE-->
     <ng-template #blankImage>
