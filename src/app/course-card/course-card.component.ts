@@ -1,4 +1,15 @@
-import {AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  QueryList
+} from '@angular/core';
 import {Course} from '../model/course';
 import {CourseImageComponent} from '../course-image/course-image.component';
 
@@ -7,7 +18,7 @@ import {CourseImageComponent} from '../course-image/course-image.component';
   templateUrl: './course-card.component.html',
   styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit, AfterViewInit {
+export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   @Input()
   course: Course;
@@ -22,8 +33,12 @@ export class CourseCardComponent implements OnInit, AfterViewInit {
   // ESSE CONTENT CHILD O ESCOPO DELE E RESTRITO SO AS PARTES DE PROJEÇÃO DO TEMPLATE
   // DOS NG CONTENT
 
-  @ContentChild(CourseImageComponent, {read: ElementRef})
-  courseImage: ElementRef;
+
+  // CHILDREN E PRA LISTAS BASICMAENTE PRA VC LEMBRAR, SE VC PRECISA PEGAR PARTE S DO CONTEU
+  // JA SE VC QUER PROGRAMTICAS REFERENCIAS USE ESSE
+  // JA O CONTENT CHILDREN ESTAMOS ACESSANDO A PARTE DO CONTEUDO DO COMPONENTE
+  @ContentChildren(CourseImageComponent, {read: ElementRef})
+  courseImages: QueryList<ElementRef>;
 
   constructor() {
 
@@ -34,7 +49,11 @@ export class CourseCardComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.courseImage);
+
+  }
+
+  ngAfterContentInit(): void {
+    console.log(this.courseImages);
   }
 
   oncourseViewed() {
@@ -53,5 +72,6 @@ export class CourseCardComponent implements OnInit, AfterViewInit {
     // PODE ENVIAR ASSIM MANDANDO UMA ARRYA
     // return {'beginner': this.course.category === 'BEGINNER'};
   }
+
 
 }
