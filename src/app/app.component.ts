@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   courses$: Observable<Course[]>;
 
-  constructor(private http: HttpClient, private courseS: CoursesService) {
+  constructor(private courseS: CoursesService) {
     console.log(this.courseS);
   }
 
@@ -27,14 +27,12 @@ export class AppComponent implements OnInit {
   // Melhor lugar pra colocar a logica de inicializaççao, trigering e a chamadas do backend
   ngOnInit() {
 
-    const params = new HttpParams().set('page', '1').set('pageSize', '10');
+    this.courses$ = this.courseS.loadCourses();
 
-
-
-    // QUANDO O ANGULAR INSTANCEIA O COMPONENTE, A PRIMEIRA COISA QUE CHAMA E O CONSTRUCTOR E PASSA AS DEPENDENCIAS MULTIPLAS
-    this.courses$ = this.http.get<Course[]>('/api/courses', {params});
   }
 
-
+  save(course: Course) {
+    this.courseS.saveCourse(course).subscribe(()=>console.log("SaveCourse"));
+  }
 
 }
