@@ -6,6 +6,7 @@ import {HighlightedDirective} from './directives/highlighted.directive';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {logging} from 'protractor';
+import {CoursesService} from './services/courses.service';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +19,8 @@ export class AppComponent implements OnInit {
 
   courses$: Observable<Course[]>;
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, private courseS: CoursesService) {
+    console.log(this.courseS);
   }
 
 
