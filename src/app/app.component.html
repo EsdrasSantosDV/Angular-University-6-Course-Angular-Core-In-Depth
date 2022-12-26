@@ -6,9 +6,10 @@
 </div>
 
 <div>
+<!--BOA PRATICA E COLOCAR UM IF ANTES FAZENDO A ASSINATURA-->
+  <div class="courses" *ngIf="courses$|async as courses">
 
-  <div class="courses">
-
+<!--      QUANDO O COMPONENTE E DESTROIDO O ASYNC PIPE , RETIRA A ASSIANATURA-->
     <course-card *ngFor="let course of courses"
                  [course]="course">
 
