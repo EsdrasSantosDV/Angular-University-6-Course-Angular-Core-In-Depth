@@ -15,8 +15,6 @@ import {CoursesService} from './services/courses.service';
 })
 export class AppComponent implements OnInit {
 
-
-
   courses$: Observable<Course[]>;
 
   constructor(private courseS: CoursesService) {
@@ -32,7 +30,7 @@ export class AppComponent implements OnInit {
   }
 
   save(course: Course) {
-    this.courseS.saveCourse(course).subscribe(()=>console.log("SaveCourse"));
+    this.courseS.saveCourse(course).subscribe(() => console.log('SaveCourse'));
   }
 
 }
