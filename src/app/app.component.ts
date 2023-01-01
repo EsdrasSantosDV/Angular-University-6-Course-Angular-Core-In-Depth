@@ -16,6 +16,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {logging} from 'protractor';
 import {CoursesService} from './services/courses.service';
+import {AppConfig, CONFIG_TOKEN} from './config';
 
 
 
@@ -23,14 +24,14 @@ import {CoursesService} from './services/courses.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  //USANDO O PROVEDOR DE THREE SHAKEL NÃO PRECISAMOS COLOCAR AQUI O PROVIDER
+  // USANDO O PROVEDOR DE THREE SHAKEL NÃO PRECISAMOS COLOCAR AQUI O PROVIDER
 })
 export class AppComponent implements OnInit {
 
   courses$: Observable<Course[]>;
 
-  constructor( private courseS: CoursesService) {
-    console.log(this.courseS);
+  constructor( private courseS: CoursesService, @Inject(CONFIG_TOKEN)private config: AppConfig) {
+    console.log(this.config.apiUrl);
   }
 
 
