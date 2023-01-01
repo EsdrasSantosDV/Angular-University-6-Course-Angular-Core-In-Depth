@@ -1,4 +1,5 @@
-import {Directive, EventEmitter, HostBinding, HostListener, Input, Output} from '@angular/core';
+import {Directive, EventEmitter, Host, HostBinding, HostListener, Input, Output} from '@angular/core';
+import {CoursesService} from '../services/courses.service';
 
 @Directive({
     selector: '[highlighted]',
@@ -12,7 +13,10 @@ export class HighlightedDirective {
     @Output()
     toggleHighlight = new EventEmitter();
 
-    constructor() {
+    //HOST ELE PEGA O SERVIÇO DO HOST DESSA DIRECTIVA, EXEMPOLO
+  //SE O CARD COMPONENTE CHAMOU ESSA DIRETIVA ELE VAI EPGAR O SERVIÇO DO CARD COMPONENTE
+  //E NÃO DA ARVORE DE HIERARQUIA DO SISTEMA
+    constructor(@Host() private coursesS: CoursesService) {
 
         console.log('Directive created..');
 
