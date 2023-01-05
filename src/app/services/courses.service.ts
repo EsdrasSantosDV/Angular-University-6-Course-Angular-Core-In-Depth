@@ -4,7 +4,9 @@ import {Observable} from 'rxjs';
 import {Course} from '../model/course';
 
 // ELE E COMPATIVEL COM O SISTEMA DE INJEÇÃO DE DEPENDENCIA ESSA CLASS E AQUI
-@Injectable(//PRA DEIXAR SEM O THREE SHAKEL
+@Injectable({
+  providedIn: 'root',
+  }
  )
 export class CoursesService {
 
