@@ -1,6 +1,6 @@
 import {
   AfterContentInit,
-  AfterViewInit,
+  AfterViewInit, Attribute,
   Component,
   ContentChildren,
   ElementRef,
@@ -19,7 +19,7 @@ import {CoursesService} from '../services/courses.service';
     selector: 'course-card',
     templateUrl: './course-card.component.html',
     styleUrls: ['./course-card.component.css'],
-    providers:[CoursesService]
+    providers: [CoursesService]
 
 })
 export class CourseCardComponent implements OnInit {
@@ -33,16 +33,15 @@ export class CourseCardComponent implements OnInit {
     @Output('courseChanged')
     courseEmitter = new EventEmitter<Course>();
 
-  /*
-    SELF DECORATOR, A INJECAO VAI USAR O SERVIÇO DO ESCOPO DELE E NÃO DO SISTEMA DE HIERARQUIA DO ANGUALAR
-    //ONDE ELE HERDA DO PAI
+
+
+    /*
+    O decorador de atributos é realmente uma otimização de desempenho que impedirá que o Angular verificando o valor da propriedade type.
+    A definição desse tipo de variável como um atributo deixa um pouco mais claro que essa propriedade aqui
+    não se destina a ser alterado ao longo do tempo.
      */
 
-  /*
-  SKIP SELF DECORATOR, A INJEÇÃO VAI IGNORAR O SERVIÇO DO ESCOPO DO COMPONENTE, E VAI INJETAR O DO COMPONENTE PAI
-   */
-
-    constructor(@Self() private courseS: CoursesService) {
+    constructor(@Self() private courseS: CoursesService, @Attribute('type') private type: string) {
       console.log(this.courseS);
     }
 
