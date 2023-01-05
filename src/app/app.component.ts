@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Inject, OnInit} from '@angular/core';
 import {Course} from './model/course';
 import {Observable} from 'rxjs';
 import {CoursesService} from './services/courses.service';
@@ -16,21 +16,39 @@ import {AppConfig, CONFIG_TOKEN} from './config';
    */
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
+
 
   courses$: Observable<Course[]>;
+  loaded = false;
+  courses: Course[];
 
-
-  constructor(private courseS: CoursesService, @Inject(CONFIG_TOKEN)private config: AppConfig) {
+  constructor(private courseS: CoursesService, @Inject(CONFIG_TOKEN)private config: AppConfig, private cd: ChangeDetectorRef) {
     console.log(this.config.apiUrl);
   }
 
+  /*
+    Do Check é o melhor lugar para implementar alguma lógica de detecção de alteração personalizada.
+   */
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
 
+    if (this.loaded) {
+      this.cd.markForCheck();
+      console.log('called cd.markForCheck()');
+      this.loaded = undefined;
+
+    }
+
+
+  }
   // Melhor lugar pra colocar a logica de inicializaççao, trigering e a chamadas do backend
   ngOnInit() {
 
-    this.courses$ = this.courseS.loadCourses();
-
+    this.courseS.loadCourses().subscribe(courses => {
+      this.courses = courses;
+      this.loaded = true;
+    });
   }
 
   save(course: Course) {

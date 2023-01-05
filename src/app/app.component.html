@@ -7,7 +7,7 @@
 
 <div>
 <!--QUANDO SE USA A ESTRATEGIA DE DETEÇÃO ON PUSH O IDEAL E USAR ASYNCS PIPES DADO QUE A DETEÇÃO DETECTA PROS CANAIS ASSICRONOS-->
-  <div class="courses" *ngIf="courses$|async as courses">
+  <div class="courses" >
 
 <!--      QUANDO O COMPONENTE E DESTROIDO O ASYNC PIPE , RETIRA A ASSIANATURA-->
     <course-card highlighted *ngFor="let course of courses"
